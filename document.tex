@@ -1,0 +1,124 @@
+% !TeX spellcheck = <none>
+\documentclass[a4paper,12pt]{report}
+\usepackage[english]{babel}
+\addto{\captionsenglish}{%
+	\renewcommand{\bibname}{References}
+}
+\usepackage[nottoc]{tocbibind}
+\usepackage{booktabs}
+\usepackage[a4paper,
+bindingoffset=0.2in,
+left=1in,
+right=1in,
+top=1in,
+bottom=1in,
+footskip=.25in]{geometry}
+\usepackage{titlesec}
+\titlespacing*{\chapter}{0pt}{-20pt}{40pt}
+\titleformat{\chapter}
+[display] %possible values are hang, leftmargin, drop, etc.
+{\Huge} % format to be applied to the whole title
+{\MakeUppercase{\chaptertitlename} \thechapter} %label setting
+{0pt} %horizontal separation between label and title body
+{\MakeUppercase} %code preceding the title body
+
+\title{Master Thesis}
+\author{Dipendra Km}
+\begin{document}
+	
+\chapter{INTRODUCTION}
+\section{Background}
+Online Classes has been widely popularized since corona virus doesn’t allow students to 
+have face-to-face classes. However, due to comfortable environment, namely- home,that 
+students have, students may get sleepy in class and cannot help with their fatigue. So 
+students need a supervised environment to alarm them not to fall asleep. So the purpose of 
+this research is to detect whether the student is getting sloppy in online classes. Since most 
+platforms, like Classin, can record students’ face clearly in real time, a model for eye 
+detection could be built to detect whether the student in a picture, which is a frame of a 
+demo of a class, is having his eyes closed or not MTCNN is widely used on face detection 
+for its good performance and it can avoid overfitting. So in this research, MTCNN is used 
+for preliminary face detection. After the face in the picture is located, precisely locate the 
+position of the eye and extract the contour of the eyes. Then, the area of the exposed eyeball 
+and the radius of the eye are calculated, secondly the area of the expressed mouth height is 
+calculated and the proportion of how much the eyeball is covered by eyelid is obtained and 
+how much the height of the mouth is obtain. The final step is to judge if the student is 
+sleeping based on PERCLOS and POM.
+
+\section{Problem Statement}
+Currently available student drowsiness detection systems is done using the Adaboost 
+algorithm which needs the quality of datasets, but for Online class datasets may require 
+lots of cleaning the dataset and required much more time to detect fatigue of student in 
+real time. Hence, in this research, CNN model will introduce to detect the fatigue in online 
+class. In this research MTCNN is used to detect the face of the student and use the customized CNN  model to calculate the PERCLOS and POM. . This research will focus on implementing a  drowsiness detection system that tries to bridge the gap between them by balancing  affordability and availability with functionality
+
+\clearpage
+\section{Research Objective}
+\begin{itemize}
+	\item To improve the student fatigue detection using facial expression in online class
+	\item To compare existing CNN model with purpose model for student fatigue detection system in online classes.
+\end{itemize}
+
+%chapter 2
+\chapter{LITERATURE REVIEW}
+Researches have been done to detect drowsiness with the help of behavioral and biological. 
+For solution, various systems have been proposed using with bio-signaling technologies, 
+and machine learning, and computer vision.
+\newline
+\newline
+First approach includes behavioral measures and machine learning techniques to develop  a system. The system is proposed by Qingyu Mo \cite{Mo_2021}.  uses Adaboost as the training method 
+to detect the face of the student, uses Canny to process the picture with human face, and 
+calculates the area of the exposed eyeball and the radius of the eye. Finally, PERCLOS is 
+used as the criterion to determine whether the student is sleeping in class
+\newline
+\newline
+Another approach by Ashish Kumar et al. in \cite{8405495} also consider visual behaviours viz. eyes, 
+mouth and nose. Face is detected using histogram of oriented gradients and linear support 
+vector machine. The detection algorithm is applied on frames of 2D images extracted from 
+video. After the detection, facial landmarks are marked with the help of landmark points. 
+Feature extraction is implemented for classification. Nose Length Ratio (NLR), Eye Aspect 
+Ratio (EAR), Mouth Opening Ratio (MOR) are calculated. When values of these 
+parameters go beyond threshold, people is classified as drowsy. The system generates 
+accurate results with generated system data.
+\newline
+\newline
+The Author \cite{article} uses Four different eye positions: looking straight, looking left, looking 
+upward and looking right are classified with the help of K-means clustering of the features 
+of detected eyes. Here looking downward is not considered because it seems closed eyes 
+and when closed eyes are detected the video will automatically pause. This approach is 
+also used to detect constant gaze towards screen to prevent Computer Vision Syndrome. 
+Another application of eye detection and eye state classification is to detect driver fatigue 
+during driving
+\newline
+\newline
+Many researchers have followed visual behaviors with machine learning for implementing 
+the drowsiness detection system. Other researched systems include bio-signaling
+equipment or vehicular components, without any collaborative use of machine learning 
+algorithms. Machine algorithms like Bayesian classifier, Support Vector Machine (SVM), 
+Hidden Markov Model (HMM), Convolutional Neural Network (CNN) have been used. 
+All of the methods give good accuracy for different facial features; methods support vector 
+machine, hidden Markov model, Bayesian classifier cost more than convolutional neural 
+network in training
+
+\chapter{METHODOLOGY}
+\section{Study Area}
+After the COVID-19 our whole educatation system moves to online System . But deu to the comfort envoirment students may falls a sleep so they do not attentative to exam.  And our many online classroom platform provide the features of face recogniztion but doesn't have the feature of fatigue detection hence it is neceassary to build the model which can recognize the fatigue in online classroom this the reson why convolutional neural network is taken into the account for building the model. 
+\section{Data Collection}
+The dataset to be used are collected from the  online platform with different posture which consists of data of online class. The attibutes that defines this online class datasets are 
+	\begin{table}
+	\centering
+	\caption{Datasets}
+	\begin{tabular}{ | c |  c | c | }
+		\toprule
+		\textbf{Attributes} & \textbf{Description} & \textbf{No.of Images} \\
+		\midrule
+		Eye Open & this is description  of  Eye open image & 1000 \\
+		Eye Close & this is this is description  of  Eye open image & 1000 \\
+		Mouth Open &  this is this is description  of  Eye open image & 100 \\
+		Mouth Open &  this is this is description  of  Eye open image & 100\\
+		\bottomrule
+		Total & & 2000
+	\end{tabular}
+\end{table}
+\bibliography{refrences}
+\bibliographystyle{ieeetr}
+\end{document}
